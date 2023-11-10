@@ -70,10 +70,27 @@ function clearItems() {
     }
     checkUI();
 }
+
+//filter function
+function filterItems (e) {
+    const items = itemList.querySelectorAll('li')
+    const text = e.target.value.toLowerCase();
+    
+    items.forEach((item) => {
+        const itemName = item.firstChild.textContent.toLocaleLowerCase();
+
+        if (itemName.indexOf(text) != -1) {  //not equal to -1 means it matches
+            item.style.display = 'flex';
+        }else {
+            item.style.display = 'none';
+        }
+    })
+}
+
+
  //functionality to clear not display filter and clear items
 function checkUI() {
     const items = itemList.querySelectorAll('li')
-    console.log(items)
     if (items.length === 0) {
         clearBtn.style.display = 'none';
         itemFilter.style.display = 'none';
@@ -83,10 +100,13 @@ function checkUI() {
     }
 }
 
+
+
 //Event Listeners
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem)
 clearBtn.addEventListener('click', clearItems)
+itemFilter.addEventListener('input', filterItems)
 
 //checks UI before the page loads
 checkUI();
