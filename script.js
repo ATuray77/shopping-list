@@ -120,7 +120,7 @@ function createIcon (classes) {
 function onClickItem(e) {
     if (e.target.parentElement.classList.contains('remove-item')) {
         removeItem(e.target.parentElement.parentElement);
-    } else {
+    } else if (e.target.tagName === 'LI') {
         seItemToEdit(e.target);
     }
 }
